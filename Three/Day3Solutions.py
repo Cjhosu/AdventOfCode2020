@@ -8,7 +8,6 @@ def check_for_tree(line,move_down,pos):
         inc=True
         try:
             if line[pos] == '#':
-                #print(line)
                 global counter
                 counter += 1
         except:
