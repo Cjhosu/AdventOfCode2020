@@ -38,7 +38,6 @@ class Passport:
         if not self.hair_color(pass_doc):
             return
 
-        print(pass_doc)
         global valid_passports
         valid_passports += 1
 
