@@ -22,7 +22,6 @@ with open('Day7_input') as file:
 
         full[parent[:-6]] = child_dict
 
-
 recurlist= []
 def recur(colo):
     for k in full:
