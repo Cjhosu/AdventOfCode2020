@@ -1,6 +1,6 @@
 import re
 
-with open('Day7_sample') as file:
+with open('Day7_input') as file:
     full = {}
     for line in file:
         rule = line.strip()
@@ -26,24 +26,28 @@ with open('Day7_sample') as file:
 recurlist= []
 def recur(colo):
     for k in full:
-        if full[k].has_key(colo):
+        if colo in full[k]:
             recurlist.append(k)
             recur(k)
 
 recur('shiny gold')
 recurset = set((recurlist))
-print(recurset)
 print(len(recurset))
 
-def recurcount(colo):
-    for k in full:
-        if k == colo:
-            print full[k]
-            these = full[k].values()
-            for each in these:
-                print(each)
-            for those in full[k].keys():
-                recurcount(those)
+counter = 0
+inner = 0
+
+def recurcount(colo, num):
+    bags = full[colo]
+    global inner
+    for k,v in bags.items():
+        if v.isdigit():
+            inner = int(v) * int(num)
+            global counter
+            counter += int(v) * int(num)
+        if v.isdigit():
+            recurcount(k, inner)
 
 
-recurcount('shiny gold')
+recurcount('shiny gold', 1)
+print(counter)
