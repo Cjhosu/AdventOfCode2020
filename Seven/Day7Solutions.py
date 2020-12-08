@@ -5,22 +5,22 @@ with open('Day7_input') as file:
     for line in file:
         rule = line.strip()
         rule = rule.split('contain')
-        outer = rule[0]
-        inner = rule[1]
-        lst_inner = inner.split(',')
-        lst = []
-        for each in lst_inner:
+        parent = rule[0]
+        child = rule[1]
+        lst_child = child.split(',')
+        cln_lst = []
+        for each in lst_child:
             each = re.sub('bag.*', '',each)
             each = each.strip(' ')
-            lst.append(each)
-        dic= {}
-        if lst[0] != 'no other':
-            for each in lst:
-                dic[each[2:]] = each[0]
+            cln_lst.append(each)
+        child_dict= {}
+        if cln_lst[0] != 'no other':
+            for each in cln_lst:
+                child_dict[each[2:]] = each[0]
         else:
-            dic[''] = ''
+            child_dict[''] = ''
 
-        full[outer[:-6]] = dic
+        full[parent[:-6]] = child_dict
 
 
 recurlist= []
@@ -45,9 +45,7 @@ def recurcount(colo, num):
             inner = int(v) * int(num)
             global counter
             counter += int(v) * int(num)
-        if v.isdigit():
             recurcount(k, inner)
-
 
 recurcount('shiny gold', 1)
 print(counter)
