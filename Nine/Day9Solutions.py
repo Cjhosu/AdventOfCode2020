@@ -31,13 +31,14 @@ class Validator:
     def adder(self, range_added, target):
         range_added.append(nums[self.idx])
         self.idx += 1
-        if sum(range_added) < target:
+        summed_range = sum(range_added)
+        if summed_range < target:
             self.adder(range_added, target)
-        elif sum(range_added) > target:
+        elif summed_range > target:
             range_added = []
             self.current_added = 0
             return
-        elif sum(range_added) == target and len(range_added) > 1:
+        elif summed_range == target and len(range_added) > 1:
             print(min(range_added) + max(range_added))
             self.done = True
 
